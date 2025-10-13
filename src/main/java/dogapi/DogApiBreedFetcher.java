@@ -25,11 +25,45 @@ public class DogApiBreedFetcher implements BreedFetcher {
      */
     @Override
     public List<String> getSubBreeds(String breed) {
-        // TODO Task 1: Complete this method based on its provided documentation
-        //      and the documentation for the dog.ceo API. You may find it helpful
-        //      to refer to the examples of using OkHttpClient from the last lab,
-        //      as well as the code for parsing JSON responses.
-        // return statement included so that the starter code can compile and run.
-        return new ArrayList<>();
+        try {
+            // construct the API URL for fetching sub-breeds
+            String url = "https://dog.ceo/api/breed/" + breed + "/list";
+            
+            // create HTTP request
+            Request request = new Request.Builder()
+                    .url(url)
+                    .build();
+            
+            // execute request
+            try (Response response = client.newCall(request).execute()) {
+                if (!response.isSuccessful()) {
+                    throw new BreedNotFoundException(breed);
+                }
+                
+                // parse JSON response
+                String responseBody = response.body().string();
+                JSONObject jsonResponse = new JSONObject(responseBody);
+                
+                // check if the API call was successful
+                String status = jsonResponse.getString("status");
+                if (!"success".equals(status)) {
+                    throw new BreedNotFoundException(breed);
+                }
+                
+                // extract sub-breeds from the message array
+                JSONArray subBreedsArray = jsonResponse.getJSONArray("message");
+                List<String> subBreeds = new ArrayList<>();
+                
+                for (int i = 0; i < subBreedsArray.length(); i++) {
+                    subBreeds.add(subBreedsArray.getString(i));
+                }
+                
+                return subBreeds;
+            }
+        } catch (IOException e) {
+            throw new BreedNotFoundException(breed);
+        } catch (Exception e) {
+            throw new BreedNotFoundException(breed);
+        }
     }
 }
