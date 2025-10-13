@@ -91,15 +91,15 @@ Note: The example in the documentation doesn't show it, but if you specify a bre
 
 ### Task 2:
 
-- [ ] Complete the `CachingBreedFetcher` class.
+- [X] Complete the `CachingBreedFetcher` class.
 
 ### Task 3:
 
-- [ ] Complete the `Main` class.
+- [X] Complete the `Main` class.
 
 ### Task 4:
 
-- [ ] Originally, the `BreedFetcher.BreedNotFoundException` exception was designed as a subclass of `RuntimeException`.
+- [X] Originally, the `BreedFetcher.BreedNotFoundException` exception was designed as a subclass of `RuntimeException`.
   Update the code so that this exception is a **checked exception** and modify any other code as needed so that the code
   is able to compile and run.
 
