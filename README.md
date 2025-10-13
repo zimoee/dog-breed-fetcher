@@ -36,8 +36,8 @@ team begins the significant coding tasks for your project.
 
 As with the NumberTriangle assignment, you need to continue to demonstrate use of Issues and PRs.
 
-- [ ] your repo must contain at least one closed issue, one closed PR, and two commits
-- [ ] all provided tests must pass
+- [X] your repo must contain at least one closed issue, one closed PR, and two commits
+- [X] all provided tests must pass
 
 ---
 
